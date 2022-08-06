@@ -7,6 +7,7 @@ import streamlit_authenticator as stauth
 current_date = datetime.now()
 global authentication_status
 
+@st.experimental_singleton()
 def main():
         if 'authentication_status' not in st.session_state:
             st.session_state['authentication_status'] = ""
@@ -58,8 +59,6 @@ def main():
                     db.insert_user(username,name,str(hashed_password[0]))
                     st.success("Successfully created.")
                     st.balloons()
-
-
 
 if __name__ == '__main__':
     main()
